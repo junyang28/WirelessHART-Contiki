@@ -252,6 +252,7 @@ orchestra_packet_sent(int mac_status)
       choffset = 3;
     }
 #else
+    LOG("test\n");
     sf = sf_sb;
     timeslot = node_index % ORCHESTRA_SBUNICAST_PERIOD;
 #endif
@@ -360,24 +361,12 @@ orchestra_init()
       node_index, 0);
 #endif
 
-#if ORCHESTRA_WITH_RBUNICAST
-  /* Receiver-based slotframe for unicast */
-  sf_rb = tsch_schedule_add_slotframe(2, ORCHESTRA_RBUNICAST_PERIOD);
-  /* Rx link, dedicated to us */
-  /* Tx links are added from tsch_callback_new_time_source */
-  tsch_schedule_add_link(sf_rb,
-      LINK_OPTION_RX,
-      LINK_TYPE_NORMAL, &tsch_broadcast_address,
-      node_index % ORCHESTRA_RBUNICAST_PERIOD, 2);
-#endif
-
+//application packets
 #if ORCHESTRA_WITH_SBUNICAST
   memb_init(&nbr_timestamps);
   /* Sender-based slotframe for unicast */
   sf_sb = tsch_schedule_add_slotframe(2, ORCHESTRA_SBUNICAST_PERIOD);
-#ifdef ORCHESTRA_SBUNICAST_PERIOD2
-  sf_sb2 = tsch_schedule_add_slotframe(3, ORCHESTRA_SBUNICAST_PERIOD2);
-#endif
+
   /* Rx links (with lease time) will be added upon receiving unicast */
   /* Tx links (with lease time) will be added upon transmitting unicast (if ack received) */
   rime_sniffer_add(&orhcestra_sniffer);
