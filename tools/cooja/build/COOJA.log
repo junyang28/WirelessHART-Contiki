@@ -1,0 +1,15 @@
+[09:12:05 - main] [Cooja.java:3172] [WARN] - JAVA_HOME environment variable not set, Cooja motes may not compile
+[09:12:05 - AWT-EventQueue-0] [Cooja.java:2856] [INFO] - External tools default settings: /external_tools_linux_64.config
+[09:12:05 - AWT-EventQueue-0] [Cooja.java:2886] [INFO] - External tools user settings: /home/young/.cooja.user.properties
+[09:12:08 - AWT-EventQueue-0] [Simulation.java:422] [INFO] - Simulation random seed: 123456
+[09:12:08 - AWT-EventQueue-0] [Visualizer.java:256] [INFO] - Registered external visualizer: org.contikios.cooja.plugins.skins.DGRMVisualizerSkin
+[09:12:12 - AWT-EventQueue-0] [Cooja.java:4261] [WARN] - Replaced [CONTIKI_DIR]/examples/jamlab_example/jamlab_example.c with /home/young/Videos/sensys15-tsch-testbed-indriya/examples/jamlab_example/jamlab_example.c (default: ../../..), but could not find it. This does not have to be an error, as the file might be created later.
+[09:12:35 - AWT-EventQueue-0] [CompileContiki.java:140] [INFO] - > make app-rpl-collect-only.sky TARGET=sky 
+[09:14:12 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/sensys15-tsch-testbed-indriya/examples/tsch-testbed/app-rpl-collect-only.sky
+[09:14:12 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/sensys15-tsch-testbed-indriya/examples/tsch-testbed/app-rpl-collect-only.sky
+[09:14:13 - Thread-1] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1570886053161
+[09:14:13 - Thread-1] [MspMote.java:229] [WARN] - 1: # MSP430[VOID_IO_READ]: *** IOUnit read from non-existent IO at $0010
+[09:14:13 - Thread-1] [MspMote.java:229] [WARN] - 1: # MSP430[VOID_IO_READ]: *** IOUnit read from non-existent IO at $0010
+[09:14:14 - Thread-1] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1570886054729	Duration: 1568 ms	Simulated time 38685 ms	Ratio 24.67155612244898
+[09:14:19 - Thread-2] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1570886059745
+[09:14:29 - Thread-2] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1570886069474	Duration: 9729 ms	Simulated time 843622 ms	Ratio 86.71209785178333

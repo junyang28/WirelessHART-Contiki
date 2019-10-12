@@ -1,0 +1,671 @@
+ifndef CONTIKI
+  $(error CONTIKI not defined! You must specify where CONTIKI resides!)
+endif
+
+## Show a warning for potentially unaligned pointer cast
+#CFLAGS += -Wcast-align
+
+ARCH=clock.c rtimer-arch.c slip_uart0.c uart0.c uart1.c uart-driver.c watchdog.c \
+ leds.c leds-arch.c \
+ button-sensor.c sensors.c micromac-radio.c node-id.c exceptions.c sprintf.c
+
+APPLIBS += MMAC 
+STACKLIBS += JPT
+
+CONTIKI_TARGET_DIRS = . dev net net/mac net/rime
+CONTIKI_TARGET_MAIN = contiki-jn5168-main.c
+
+ifdef nodemac
+CFLAGS += -DMACID=$(nodemac)
+endif
+
+CONTIKI_TARGET_SOURCEFILES += $(ARCH)
+CONTIKI_SOURCEFILES        += $(CONTIKI_TARGET_SOURCEFILES)
+
+PROJECT_OBJECTFILES += ${addprefix $(OBJECTDIR)/,$(CONTIKI_TARGET_MAIN:.c=.o)}
+
+##############################################################################
+# User definable make parameters that may be overwritten from the command line
+
+# Default target device is the JN5148, (JN5148J01, JN5142J01, JN5168, JN5164 also valid)
+JENNIC_CHIP ?= JN5168
+# Default DK4 development kit target hardware
+JENNIC_PCB ?= DEVKIT4
+# Stack: JIP, None
+JENNIC_STACK ?= None
+# Factory reset PDM magic number (0 for default)
+FACTORY_RESET_MAGIC ?= 0
+# Zero version if not passed in on the command line 
+VERSION ?= 0
+
+.SUFFIXES:
+
+ifndef SDK_BASE_DIR
+  $(warning SDK_BASE_DIR not defined! You must specify where NXP SDK resides!)     
+  SDK_BASE_DIR = /cygdrive/c/Jennic
+  $(warning Defaulting to $(SDK_BASE_DIR))
+endif
+
+CONTIKI_PLATFORM_BASE_DIR = ${CONTIKI}/platform/jn5168
+COMPONENTS_BASE_DIR = $(SDK_BASE_DIR)/Components
+CONTIKIDIRS += $(COMPONENTS_BASE_DIR)
+CONTIKI_CPU_DIRS = . 
+
+ifndef HOST_OS
+  ifeq ($(OS),Windows_NT)
+    HOST_OS := Windows
+  else
+    HOST_OS := $(shell uname)
+  endif
+endif
+
+###############################################################################
+# Compiler Paths
+
+CC	= gcc
+AS	= as
+LD	= ld
+AR	= ar
+NM	= nm
+STRIP	= strip
+SIZE	= size
+OBJCOPY = objcopy
+OBJDUMP = objdump
+RANLIB	= ranlib
+
+ifeq ($(HOST_OS),Windows)
+TOOLCHAIN_PATH = $(SDK_BASE_DIR)/Tools/ba-elf-ba2/bin
+TOOLCHAIN_PREFIX = ba-elf-
+else
+TOOLCHAIN_PATH = $(SDK_BASE_DIR)/../bin
+TOOLCHAIN_PREFIX = ba-elf-
+#TOOLCHAIN_PATH = $(SDK_BASE_DIR)/../ba-elf/bin
+#TOOLCHAIN_PREFIX = 
+endif
+
+CC:=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)$(CC)
+AS:=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)$(AS)
+LD:=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)$(LD)
+AR:=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)$(AR)
+NM:=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)$(NM)
+STRIP:=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)$(STRIP)
+SIZE:=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)$(SIZE)
+OBJCOPY:=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)$(OBJCOPY)
+OBJDUMP:=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)$(OBJDUMP)
+
+# Figure out chip family and short chip name
+ifeq ($(JENNIC_CHIP), JN5168)
+JENNIC_CHIP_FAMILY = JN516x
+endif
+
+ifeq ($(JENNIC_CHIP), JN5164)
+JENNIC_CHIP_FAMILY = JN516x
+endif
+
+ifeq ($(JENNIC_CHIP), JN5148)
+JENNIC_CHIP_FAMILY = JN514x
+endif
+
+ifeq ($(JENNIC_CHIP), JN5148J01)
+JENNIC_CHIP_FAMILY = JN514x
+endif
+
+ifeq ($(JENNIC_CHIP), JN5142J01)
+JENNIC_CHIP_FAMILY = JN514x
+endif
+
+# Need to create a time based version number ? 
+ifeq ($(VERSION), 0)
+# Get touched time
+TEMP := $(shell touch touch.txt)
+TOUCHED := $(word 6, $(shell ls -l --time-style=+%w%H%M touch.txt))
+VERSION := $(TOUCHED)
+else ifeq ($(VERSION), 1)
+# Get touched time
+TEMP := $(shell touch touch.txt)
+TOUCHED := $(word 6, $(shell ls -l --time-style=+%y%m%d touch.txt))
+VERSION := $(TOUCHED)
+else
+TOUCHED := 0
+endif
+
+ifneq ($(FACTORY_RESET_MAGIC), 0)
+CFLAGS += -DMK_FACTORY_RESET_MAGIC=$(FACTORY_RESET_MAGIC)
+endif
+
+CFLAGS += -DEMBEDDED
+CFLAGS += -DUSER_VSR_HANDLER
+CFLAGS += -fno-common
+ifeq ($(TRACE), 1)
+CFLAGS += -DDBG_ENABLE
+BUILD  = _DEBUG
+endif
+
+# Build name with version 
+ifeq ($(TOUCHED), 0)
+NAME_POSTFIX = $(JENNIC_CHIP)$(BUILD)_v$(VERSION)
+else
+NAME_POSTFIX = $(JENNIC_CHIP)$(BUILD)
+endif
+
+##############################################################################
+# Application Source files
+
+#ifeq ($(JENNIC_CHIP_FAMILY), JN516x)
+#APPSRC += AHI_EEPROM.c
+#endif
+
+##############################################################################
+# Additional Application Source directories
+# Define any additional application directories outside the application directory
+# e.g. for AppQueueApi
+
+ADDITIONAL_SRC_DIR += $(COMPONENTS_BASE_DIR)/Utilities/Source
+##############################################################################
+# Standard Application header search paths
+INCFLAGS += -I$(ADDITIONAL_SRC_DIR) 
+# Application specific include files
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/MAC/Include
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/JenNet/Include
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/6LP/Include
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/OS/Include
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/JIP/Include
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/Utilities/Include
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/Aes/Include
+
+##############################################################################
+#  Application libraries (non-JN5142J01)
+
+# Chip family libraries 
+ifeq ($(JENNIC_CHIP), JN5142J01)
+APPLIBS += DBG
+APPLIBS += Recal
+else ifeq ($(JENNIC_CHIP), JN5148J01)
+APPLIBS += DBG
+APPLIBS += Recal
+APPLIBS += PDM
+APPLIBS += JIP
+else ifeq ($(JENNIC_CHIP), JN5148)
+APPLIBS += DBG
+APPLIBS += Recal
+APPLIBS += PDM
+APPLIBS += JIP
+else 
+APPLIBS += DBG
+APPLIBS += Recal
+APPLIBS += PDM_EEPROM
+APPLIBS += JIP
+APPLIBS += JenNet
+APPLIBS += 6LP
+endif
+
+# Chip specific libraries
+ifeq ($(JENNIC_CHIP), JN5148J01)
+STACKLIBS += JenNet
+STACKLIBS += 6LP
+else ifeq ($(JENNIC_CHIP), JN5148)
+STACKLIBS += JenNet_CR_NOSLEEP
+STACKLIBS += 6LP_CR_NOSLEEP
+endif
+##############################################################################
+# Configure for the selected PLatform and stack
+#include $(SDK_BASE_DIR)/Chip/Common/Build/config.mk
+###############################################################################
+# Include the chip or chip family definitions.
+# Chip takes precendence over chip family
+
+# Ensure chip and family are set
+override JENNIC_CHIP_FAMILY = JN516x
+
+# Define numeric value for chip type
+CFLAGS += -DJN516x=5160
+CFLAGS += -DJN5168=5168
+CFLAGS += -DJENNIC_CHIP_NAME=_JN5168
+
+# Base dir for selected chip
+CHIP_BASE_DIR = $(SDK_BASE_DIR)/Chip/$(JENNIC_CHIP)
+
+# include definitions for the BA2 architecture
+#include $(SDK_BASE_DIR)/Chip/Common/Build/config_ba2.mk
+# BA2 archtecture compiler flags
+ifeq ($(HOST_OS),Windows)
+CFLAGS += -msibcall -mno-multi -mno-setcc
+CFLAGS += -mno-carry -mno-subb -mno-sext
+CFLAGS += -mno-hard-div -mhard-mul -mbranch-cost=3 -msimple-mul
+CFLAGS += -march=ba2 -mredzone-size=4
+CFLAGS +=  -ffixed-r16 -ffixed-r17 -ffixed-r18 -ffixed-r19
+CFLAGS +=  -ffixed-r20 -ffixed-r21 -ffixed-r22 -ffixed-r23
+CFLAGS +=  -ffixed-r24 -ffixed-r25 -ffixed-r26 -ffixed-r27
+CFLAGS +=  -ffixed-r28 -ffixed-r29 -ffixed-r30 -ffixed-r31
+else
+CFLAGS += -msibcall -mno-multi -mno-setcc
+CFLAGS += -mno-carry -mno-subb
+CFLAGS += -mno-hard-div -mhard-mul -mbranch-cost=3
+CFLAGS += -march=ba2 -mredzone-size=4
+CFLAGS +=  -ffixed-r16 -ffixed-r17 -ffixed-r18 -ffixed-r19
+CFLAGS +=  -ffixed-r20 -ffixed-r21 -ffixed-r22 -ffixed-r23
+CFLAGS +=  -ffixed-r24 -ffixed-r25 -ffixed-r26 -ffixed-r27
+CFLAGS +=  -ffixed-r28 -ffixed-r29 -ffixed-r30 -ffixed-r31
+endif
+# omit frame pointer by default
+CFLAGS += -fomit-frame-pointer
+# default to optimise for size
+CFLAGS += -Os
+# Output each function and static data in their own sections
+CFLAGS += -fdata-sections -ffunction-sections
+
+# Debug Support
+
+# Define seperate debug for SW and HW debug
+ifeq ($(DEBUG), SW)
+CFLAGS  := $(subst -Os,,$(CFLAGS))
+CFLAGS  += -g -O0 -DGDB
+CFLAGS  += -DSWDEBUG
+
+BIN_SUFFIX ?= _swdbg
+$(info Building SW debug version ...)
+endif
+
+ifeq ($(DEBUG), HW)
+CFLAGS  := $(subst -Os,,$(CFLAGS))
+CFLAGS  += -g -O0 -DGDB
+HARDWARE_DEBUG_ENABLED=1
+endif
+
+ifeq ($(DEBUG), HW_SIZEOPT)
+CFLAGS  += -g  -DGDB
+$(info Size optimisation enabled with HW debug ...)
+HARDWARE_DEBUG_ENABLED=1
+endif
+
+ifeq ($(HARDWARE_DEBUG_ENABLED), 1)
+# Set DEBUG_PORT to UART0 or UART1 dependant on connection to serial port on board
+CFLAGS += -D$(DEBUG_PORT)_DEBUG
+CFLAGS  += -DHWDEBUG
+BIN_SUFFIX ?= _hwdbg
+$(info Building HW debug version ...)
+endif
+
+# Chip specific C flags
+# watchdog is enabled by default on chip so allow disable if reqd
+CFLAGS += -DWATCHDOG_ENABLED
+
+# Feature set:
+#   JENNIC_HW_xx is silicon feature and so fixed
+#   JENNIC_SW_xx is build option and can be changed
+#
+#   JENNIC_HW_BBC_RXINCCA:    BBC RX during CCA capability
+#   JENNIC_HW_BBC_DMA:        BBC frame buffer DMA mechanism
+#   JENNIC_HW_BBC_ISA:        BBC inline security engine 
+#   JENNIC_SW_EXTERNAL_FLASH: whether external flash is supported
+#   JN516X_DMA_UART_BACKWARDS_COMPATIBLE_API: API behaves like the older versions with no visible UART DMA 
+#   JN516X_BACKWARDS_COMPATIBLE_API: API behaves like the older versions (supercedes above)
+#   PDM_DESCRIPTOR_BASED_API: Use standard API interface 
+#
+CFLAGS += -DJENNIC_HW_BBC_RXINCCA=1
+CFLAGS += -DJENNIC_HW_BBC_DMA=1
+CFLAGS += -DJENNIC_HW_BBC_ISA=0
+CFLAGS += -DJENNIC_SW_EXTERNAL_FLASH=0
+CFLAGS += -DJN516X_DMA_UART_BACKWARDS_COMPATIBLE_API=1
+CFLAGS += -DJN516X_BACKWARDS_COMPATIBLE_API=1
+CFLAGS += -DPDM_DESCRIPTOR_BASED_API=1
+
+## Linker flags
+LDFLAGS += -nostartfiles
+LDFLAGS += -mba2_elf
+LDFLAGS += -march=ba2
+
+# Standard libraries: Peripheral API, MAC, etc.
+ifneq ($(JENNIC_STACK), None)
+LDLIBS  += AppApi_$(REDUCED_MAC_LIB_SUFFIX)$(JENNIC_CHIP_FAMILY)
+LDLIBS  += Mac_$(REDUCED_MAC_LIB_SUFFIX)$(JENNIC_CHIP_FAMILY)
+LDLIBS  += Tof_$(JENNIC_CHIP_FAMILY)
+LDLIBS  += Xcv_$(JENNIC_CHIP_FAMILY)
+endif
+LDLIBS  += AES_CCM_SW_PATCH_$(JENNIC_CHIP_FAMILY)
+LDLIBS  += Aes_$(JENNIC_CHIP_FAMILY)
+LDLIBS  += TimerServer_$(JENNIC_CHIP_FAMILY)
+LDLIBS  += HardwareApi_$(JENNIC_CHIP_FAMILY)
+LDLIBS  += MicroSpecific_$(JENNIC_CHIP_FAMILY)
+LDLIBS  += Boot_$(JENNIC_CHIP_FAMILY)
+LDLIBS  += Maths_$(JENNIC_CHIP_FAMILY)
+
+# Stack-specific libraries: JIP uses the PDM EEPROM variant
+ifeq ($(JENNIC_STACK), JIP)
+LDLIBS  += PDM_EEPROM_$(JENNIC_CHIP_FAMILY)
+endif
+
+# Export linker command file if building patch library
+ifeq ($(JENNIC_STACK), None)
+LINKER_FILE = AppBuildNone
+else
+ifeq ($(JENNIC_STACK), JIP)
+LINKER_FILE = AppBuildJip
+else
+LINKER_FILE = AppBuildMac
+endif
+endif
+LINKCMD ?= $(LINKER_FILE)_$(JENNIC_CHIP).ld
+
+# Hardware debug support (NOTE: JN516x doesn't need separate library as JTag initialised in bootloader)
+ifeq ($(HARDWARE_DEBUG_ENABLED), 1)
+LDFLAGS += -Wl,--defsym,g_bSWConf_Debug=1
+ifeq ($(DEBUG_PORT), UART1)
+LDFLAGS += -Wl,-defsym,g_bSWConf_AltDebugPort=1
+else
+ifneq ($(DEBUG_PORT), UART0)
+$(error if DEBUG=HW: Must define DEBUG_PORT=UART0 or DEBUG_PORT=UART1)
+endif
+endif
+$(info  Building HW debug version ...)
+endif
+###############################################################################
+# Define the selected Jennic chip
+
+CFLAGS += -DJENNIC_CHIP=$(JENNIC_CHIP)
+CFLAGS += -DJENNIC_CHIP_$(JENNIC_CHIP)
+CFLAGS += -DJENNIC_CHIP_FAMILY=$(JENNIC_CHIP_FAMILY)
+CFLAGS += -DJENNIC_CHIP_FAMILY_$(JENNIC_CHIP_FAMILY)
+
+CFLAGS += -DJENNIC_STACK_$(JENNIC_STACK)
+
+###############################################################################
+# Chip independent compiler options
+
+CFLAGS += -Wall
+CFLAGS += -Wunreachable-code
+
+## include $(SDK_BASE_DIR)/Platform/Common/Build/Config.mk
+ifdef JENNIC_PCB
+ifeq ($(JENNIC_PCB),DEVKIT1)
+PLATFORM_BASE_DIR = $(SDK_BASE_DIR)/Platform/DK1
+else
+ifeq ($(JENNIC_PCB),DEVKIT2)
+PLATFORM_BASE_DIR = $(SDK_BASE_DIR)/Platform/DK2
+else
+ifeq ($(JENNIC_PCB),HPDEVKIT)
+PLATFORM_BASE_DIR = $(SDK_BASE_DIR)/Platform/HPDevKit
+else
+ifeq ($(JENNIC_PCB),NTS)
+PLATFORM_BASE_DIR = $(SDK_BASE_DIR)/Platform/NTS
+else
+ifeq ($(JENNIC_PCB),DEVKIT3)
+PLATFORM_BASE_DIR = $(SDK_BASE_DIR)/Platform/DK3
+else
+ifeq ($(JENNIC_PCB),DEVKIT4)
+PLATFORM_BASE_DIR = $(SDK_BASE_DIR)/Platform/DK4
+else
+$(error JENNIC_PCB is not defined. Define for the Jennic development kit you are using.)
+endif
+endif
+endif
+endif
+endif
+endif
+
+###############################################################################
+# Compiler flags
+
+CFLAGS += -I$(SDK_BASE_DIR)/Platform/Common/Include
+
+# Define the selected Jennic platform
+
+CFLAGS += -DJENNIC_PCB=$(JENNIC_PCB)
+CFLAGS += -DJENNIC_PCB_$(JENNIC_PCB)
+
+###############################################################################
+# Include platform specific definitions
+
+#include $(PLATFORM_BASE_DIR)/Build/PlatformConfig.mk
+###############################################################################
+# Compiler
+CFLAGS += -I$(PLATFORM_BASE_DIR)/Include
+###############################################################################
+# Linker
+LDFLAGS += -L$(PLATFORM_BASE_DIR)/Library
+LDLIBS += BoardLib_$(JENNIC_CHIP_FAMILY)
+###############################################################################
+endif
+
+###############################################################################
+
+#include $(SDK_BASE_DIR)/Stack/Common/Build/config.mk
+###############################################################################
+# Base location
+STACK_BASE_DIR = $(SDK_BASE_DIR)/Stack
+###############################################################################
+# Include path for standard type definitions
+CFLAGS += -I$(COMPONENTS_BASE_DIR)/Common/Include
+###############################################################################
+# Linker library paths
+LDFLAGS += -L$(COMPONENTS_BASE_DIR)/Library
+###############################################################################
+# Common ROM based software components
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/AppApi/Include
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/HardwareApi/Include
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/Aes/Include
+# Software debug support
+ifeq ($(DEBUG), SW)
+$(info Building SW debug version ...)
+LDLIBS  := SWDebug_$(JENNIC_CHIP) $(LDLIBS)
+
+# Set SWDEBUG_PORT to UART0 or UART1 dependent on connection to serial port on board
+ifeq ($(DEBUG_PORT), UART0)
+CFLAGS  += -DSWDEBUG_PORT=0
+$(info Software Debug will use UART0)
+else 
+ifeq ($(DEBUG_PORT), UART1)
+CFLAGS  += -DSWDEBUG_PORT=1
+$(info Software Debug will use UART1)
+endif
+endif
+
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/GDB/Include
+endif
+###############################################################################
+# Include stack specific definitions
+
+ifndef JENNIC_STACK
+$(info JENNIC_STACK is undefined, defaulting to None)
+JENNIC_STACK ?= None
+endif
+
+#include $(STACK_BASE_DIR)/$(JENNIC_STACK)/Build/config_$(JENNIC_STACK).mk
+###############################################################################
+# ROM based software components
+
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/Mac/Include
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/TimerServer/Include
+ifeq ($(JENNIC_CHIP_FAMILY), JN514x)	
+INCFLAGS += -I$(COMPONENTS_BASE_DIR)/Random/Include
+endif
+
+###############################################################################
+# RAM based software components
+
+INCFLAGS += $(addsuffix /Include,$(addprefix -I$(COMPONENTS_BASE_DIR)/,$(APPLIBS)))
+
+ifneq ($(BUILD), ROM)
+#CFLAGS += -DAPPAPI_IN_RAM
+CFLAGS += -DRAM_BUILD
+endif
+
+ifeq ($(TRACE), 1)
+CFLAGS  += -DDBG_ENABLE
+$(info Building trace version ...)
+endif
+
+###############################################################################
+
+###############################################################################
+# Setup path for default stack size definition for the selected stack
+
+LDFLAGS := -TApp_Stack_Size.ld $(LDFLAGS) -L$(CONTIKI_PLATFORM_BASE_DIR)
+
+###############################################################################
+
+###############################################################################
+# App library folders
+
+APPOBJS = $(APPSRC:.c=.o)
+
+##############################################################################
+# Application dynamic dependencies
+
+APPDEPS = $(APPOBJS:.o=.d)
+
+#########################################################################
+# Linker
+
+# Add application libraries before chip specific libraries to linker so
+# symbols are resolved correctly (i.e. ordering is significant for GCC)
+
+LDMYLIBS := $(addsuffix _$(JENNIC_CHIP_FAMILY)$(BUILD),$(MYLIBS)) $(LDMYLIBS)
+LDLIBS := $(addsuffix _$(JENNIC_CHIP_FAMILY),$(APPLIBS)) $(LDLIBS)
+LDSTACKLIBS := $(addsuffix _$(JENNIC_CHIP),$(STACKLIBS)) $(LDSTACKLIBS)
+
+### Remap names
+# APPLIBS ?? , STACKLIBS ?? LDFLAGS ?? LDLIBS ?? LINKCMD ??
+CONTIKIDIRS += $(ADDITIONAL_SRC_DIR)
+CFLAGS += $(INCFLAGS) 
+
+# Library search paths
+LDFLAGS += -L$(CHIP_BASE_DIR)/Build
+LDFLAGS += -L$(CHIP_BASE_DIR)/Library
+
+#### make targets
+
+ifeq ($(HOST_OS),Windows)
+  SERIALDUMP = serialdump-windows
+endif
+ifeq ($(HOST_OS),Darwin)
+  SERIALDUMP = serialdump-macos
+endif
+ifndef SERIALDUMP
+  # Assume Linux
+  SERIALDUMP = serialdump-linux
+endif
+
+UART_BAUDRATE ?= 1000000
+
+########################################################################
+# Dependency, compilation and flash-programming rules
+
+.PHONY: all clean
+
+.PRECIOUS: %.elf
+
+%.d: clean
+
+%.elf: $(APPOBJS) $(addsuffix _$(JENNIC_CHIP_FAMILY).a,$(addprefix $(COMPONENTS_BASE_DIR)/Library/lib,$(APPLIBS)))
+	$(info Linking $@ ...)
+	$(CC) -Wl,--gc-sections $(LDFLAGS) -T$(LINKCMD) -o $@ -Wl,--start-group $(APPOBJS) $(addprefix -l,$(LDLIBS)) $(addprefix -l,$(LDSTACKLIBS)) $(addprefix -l,$(LDMYLIBS)) -Wl,--end-group -Wl,-Map,contiki-$(TARGET).map  
+	@echo
+	
+%.nm: %.$(TARGET)
+	$(NM) -nS $< > $@
+
+%.dmp: %.$(TARGET) 
+	$(OBJDUMP) -d $< > $@
+
+ALLLIBS = $(addprefix -l,$(LDLIBS)) $(addprefix -l,$(LDSTACKLIBS)) $(addprefix -l,$(LDMYLIBS))
+CUSTOM_RULE_LINK=1
+%.$(TARGET): %.co $(PROJECT_OBJECTFILES) $(PROJECT_LIBRARIES) contiki-$(TARGET).a 
+	$(TRACE_LD)
+	$(CC) -Wl,--gc-sections -T$(LINKCMD) $(LDFLAGS) -o $@ -Wl,--start-group $(TARGET_STARTFILES) ${filter-out %.a,$^} ${filter %.a,$^} $(ALLLIBS) -Wl,--end-group -Wl,-Map,contiki-$(TARGET).map
+	$(info Generating target & binary $@ +.bin...)
+	$(OBJCOPY) $@ $$( $(OBJDUMP) -h $< | sed -n 's/^ *[0-9]* \(.rom[._[:alnum:]]*\).*/-R \1/p' )
+	$(OBJCOPY) -S -O binary $@ $@.bin
+	
+%.$(TARGET).bin: %.$(TARGET) 
+	$(OBJCOPY) -S -O binary $< $@
+# .PHONY: symbols.c symbols.h
+
+symbols.c symbols.h:
+	@${CONTIKI}/tools/make-empty-symbols
+
+%.hex: %.$(TARGET)
+	$(OBJCOPY) $^ -O binary $@
+
+##
+#Usage: FlashCLI.exe [options] -f FLASHFILE
+#
+#NXP JN51xx Flash Programmer 1.8.9
+#
+#
+#Options:
+#  --version             show program's version number and exit
+#  -h, --help            show this help message and exit
+#  -c COMPORT, --ComPort=COMPORT
+#                        Select serial device to use (e.g. COM1, /dev/ttyUSB0)
+#                        - default COM1
+#  -f FLASHFILE, --FlashFile=FLASHFILE
+#                        Program FLASHFILE to the flash or RAM if --RAM
+#                        specified
+#  -l LISTFILE, --ListFile=LISTFILE
+#                        Program MAC address from LISTFILE
+#  -R, --RAM             Load binary into RAM and execute
+#  -w, --NoWait          Do not prompt user to put device into programming mode
+#  -m MACADDR, --MACAddress=MACADDR
+#                        Specify MAC address to program into the flash, hex
+#                        format XX:XX:XX:XX:XX:XX:XX:XX
+#  -B BAUDRATE, --BaudRate=BAUDRATE
+#                        Set the Baud Rate do not exceed 1000000 - defaults to
+#                        38400
+#  -p, --Preserve sector 3
+#                        Preserve sector 3
+#  -s, --SkipVerification
+#                        Skip verification of flash contents after programming
+#                        of the flash memory
+#  -a, --AutomaticPandR  Automatically generate PROGRAM and RESET signals
+#  -k PASSKEY, --Passkey=PASSKEY
+#                        Specify device security pass key
+##
+
+### Upload target to one jn5168 mote specified by COM=portNumber
+%.upload: %.$(TARGET).bin
+	${SDK_BASE_DIR}/Tools/flashprogrammer/FlashCLI.exe -a -c COM${COM} -B 1000000 -s -w -f $<
+
+### Flash the given file
+%.flash: 
+	${SDK_BASE_DIR}/Tools/flashprogrammer/FlashCLI.exe -a -c COM${COM} -B 1000000 -s -w -f $*
+
+### List the ports with connected jn5168 motes	
+motelist:
+	python $(CONTIKI)/tools/jn5168/mote-list.py  ${SDK_BASE_DIR}/Tools/flashprogrammer/FlashCLI.exe \#
+
+motelistmac:
+	python $(CONTIKI)/tools/jn5168/mote-list.py  ${SDK_BASE_DIR}/Tools/flashprogrammer/FlashCLI.exe \!
+	
+motelistinfo:
+	python $(CONTIKI)/tools/jn5168/mote-list.py  ${SDK_BASE_DIR}/Tools/flashprogrammer/FlashCLI.exe \?	
+
+### Upload target to all connected jn5168 motes	
+%.uploadall: %.$(TARGET).bin
+	python $(CONTIKI)/tools/jn5168/mote-list.py  ${SDK_BASE_DIR}/Tools/flashprogrammer/FlashCLI.exe $<
+
+### Flash the given file to all connected jn5168 motes	
+%.flashall:
+	python $(CONTIKI)/tools/jn5168/mote-list.py  ${SDK_BASE_DIR}/Tools/flashprogrammer/FlashCLI.exe $*
+	
+serialdumpall:
+	python $(CONTIKI)/tools/jn5168/mote-list.py  ${SDK_BASE_DIR}/Tools/flashprogrammer/FlashCLI.exe \%
+	
+########### login: read serial line ##############
+### USAGE: make TARGET=jn5168 login UART_BAUDRATE={baudrate} {serial device}
+### UART_BAUDRATE: i.e., 115200. default is 1000000
+### serial device: i.e., ttyUSB0 or com1.
+### example: make TARGET=jn5168 UART_BAUDRATE=115200 login com12
+
+$(SERIALDUMP): 
+	(cd $(CONTIKI)/tools/sky; ${MAKE} $(SERIALDUMP))
+
+login: $(SERIALDUMP)	
+	$(CONTIKI)/tools/sky/$(SERIALDUMP) -b${UART_BAUDRATE} $(PORT)
+
+serialview: $(SERIALDUMP)	
+	$(CONTIKI)/tools/sky/$(SERIALDUMP) -b${UART_BAUDRATE} $(PORT) | $(CONTIKI)/tools/timestamp
+		
+serialdump: $(SERIALDUMP)	
+	$(CONTIKI)/tools/sky/$(SERIALDUMP) -b${UART_BAUDRATE} $(PORT) | $(CONTIKI)/tools/timestamp | tee serialdump-$(notdir $(PORT))-`date +%Y%m%d-%H%M`
+	
