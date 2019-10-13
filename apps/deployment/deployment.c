@@ -339,7 +339,8 @@ uint16_t
 get_node_index_from_id(uint16_t id)
 {
 #if IN_COOJA
-  return nodex_index_map(id - 1);
+  //return nodex_index_map(id - 1);
+  return nodex_index_map(id);
 #else
   const struct id_mac *curr = id_mac_list;
   while(curr->id != 0) {

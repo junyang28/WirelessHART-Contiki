@@ -21,9 +21,7 @@ obj_sky/tsch-log.o: ../../core/net/mac/tsch/tsch-log.c \
  ../../core/./net/mac/tsch/tsch-private.h \
  ../../core/./net/mac/tsch/tsch-log.h \
  ../../core/./net/mac/tsch/tsch-packet.h \
- ../../core/./net/mac/tsch/tsch-schedule.h ../../core/./lib/list.h \
- ../../core/./net/ip/uip-debug.h ../../core/./net/ip/uip.h \
- ../../core/./net/ip/uipopt.h ../../core/./net/ip/tcpip.h
+ ../../core/./net/mac/tsch/tsch-schedule.h ../../core/./lib/list.h
 ../../core/net/mac/tsch/tsch-log.c :
  ../../core/./contiki.h ../../core/./contiki-version.h :
  ../../platform/sky/./contiki-conf.h ../../platform/sky/./platform-conf.h :
@@ -48,5 +46,3 @@ obj_sky/tsch-log.o: ../../core/net/mac/tsch/tsch-log.c \
  ../../core/./net/mac/tsch/tsch-log.h :
  ../../core/./net/mac/tsch/tsch-packet.h :
  ../../core/./net/mac/tsch/tsch-schedule.h ../../core/./lib/list.h :
- ../../core/./net/ip/uip-debug.h ../../core/./net/ip/uip.h :
- ../../core/./net/ip/uipopt.h ../../core/./net/ip/tcpip.h :

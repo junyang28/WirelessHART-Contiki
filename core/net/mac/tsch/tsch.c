@@ -1093,6 +1093,7 @@ PT_THREAD(tsch_link_operation(struct rtimer *t, void *ptr))
       /* Reset drift correction */
       drift_correction = 0;
       drift_neighbor = NULL;
+      //LOG("test\n");
       /* Decide whether it is a TX/RX/IDLE or OFF link */
       /* Actual slot operation */
       if(current_packet != NULL) {
@@ -1650,7 +1651,7 @@ static int
 turn_on(void)
 {
   /* tsch_is_coordinator must be set (or unset) before calling this */
-
+  //LOG("test\n");
   /* periodically send TSCH EBs */
   process_start(&tsch_send_eb_process, NULL);
   /* try to associate to a network or start one if setup as RPL root */

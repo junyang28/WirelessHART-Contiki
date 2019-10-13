@@ -48,7 +48,7 @@
 #include "tools/orchestra.h"
 #include <stdio.h>
 
-#define SEND_INTERVAL   (60*CLOCK_SECOND)
+#define SEND_INTERVAL   (1*CLOCK_SECOND)
 #define UDP_PORT 1234
 
 static struct simple_udp_connection unicast_connection;
@@ -91,9 +91,13 @@ app_send_to(uint16_t id, uint32_t seqno, unsigned int to_send_cnt)
 
   set_ipaddr_from_id(&dest_ipaddr, id);
 
-  if(can_send_to(&dest_ipaddr)) {
+  //if(can_send_to(&dest_ipaddr)) {
+  if(1){
     LOGA(&data, "App: sending");
-    simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
+    //simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
+    //simple_udp_send(&unicast_connection, &data, sizeof(data));
+    uip_create_linklocal_allnodes_mcast(&dest_ipaddr);
+    simple_udp_sendto(&unicast_connection, "Test", 4, &dest_ipaddr);
     return 1;
   } else {
     data.seqno = UIP_HTONL(seqno + to_send_cnt - 1);
@@ -135,7 +139,7 @@ PROCESS_THREAD(unicast_sender_process, ev, data)
       etimer_set(&send_timer, random_rand() % (SEND_INTERVAL));
       PROCESS_WAIT_UNTIL(etimer_expired(&send_timer));
 
-      if(default_instance != NULL) {
+      //if(default_instance != NULL) {
         to_send_cnt++;
         while(to_send_cnt > 0) {
           seqno = ((uint32_t)node_id << 16) + cnt;
@@ -150,9 +154,9 @@ PROCESS_THREAD(unicast_sender_process, ev, data)
             break;
           }
         }
-      } else {
-        LOG("App: no DODAG\n");
-      }
+      //} else {
+      //  LOG("App: no DODAG\n");
+      //}
       PROCESS_WAIT_UNTIL(etimer_expired(&periodic_timer));
       etimer_reset(&periodic_timer);
     }

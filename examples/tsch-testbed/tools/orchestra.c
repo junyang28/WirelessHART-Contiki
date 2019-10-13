@@ -150,7 +150,7 @@ orchestra_delete_old_links_sf(struct tsch_slotframe *sf)
 static void
 orchestra_delete_old_links()
 {
-  orchestra_delete_old_links_sf(sf_sb);
+  //orchestra_delete_old_links_sf(sf_sb);
 #ifdef ORCHESTRA_SBUNICAST_PERIOD2
   orchestra_delete_old_links_sf(sf_sb2);
 #endif
@@ -252,8 +252,9 @@ orchestra_packet_sent(int mac_status)
       choffset = 3;
     }
 #else
-    LOG("test\n");
+    //LOG("test\n");
     sf = sf_sb;
+    choffset = 2;
     timeslot = node_index % ORCHESTRA_SBUNICAST_PERIOD;
 #endif
     struct link_timestamps *ts;
@@ -318,36 +319,14 @@ orchestra_callback_new_time_source(struct tsch_neighbor *old, struct tsch_neighb
   }
 #endif /* ORCHESTRA_WITH_EBSF */
 
-#if ORCHESTRA_WITH_RBUNICAST
-  if(old_index != 0xffff) {
-    /* Shared-slot: remove unicast Tx link to the old time source */
-    if(old_index % ORCHESTRA_RBUNICAST_PERIOD == node_index % ORCHESTRA_RBUNICAST_PERIOD) {
-      /* This same link is also our unicast Rx link! Instead of removing it, we update it */
-      PRINTF("Orchestra: removing tx option to link for %u (%u) unicast\n", old_id, old_index);
-      tsch_schedule_add_link(sf_rb,
-          LINK_OPTION_RX,
-          LINK_TYPE_NORMAL, &tsch_broadcast_address,
-          node_index % ORCHESTRA_RBUNICAST_PERIOD, 2);
-    } else {
-      PRINTF("Orchestra: removing tx link for %u (%u) unicast\n", old_id, old_index);
-      tsch_schedule_remove_link_from_timeslot(sf_rb, old_index % ORCHESTRA_RBUNICAST_PERIOD);
-    }
-  }
-
-  if(new_index != 0xffff) {
-    /* Shared-slot: schedule a shared Tx link to the new time source */
-    PRINTF("Orchestra: adding tx (rx=%d) link for %u (%u) unicast\n",
-        new_index % ORCHESTRA_RBUNICAST_PERIOD == node_index % ORCHESTRA_RBUNICAST_PERIOD,
-        new_id, new_index);
-    tsch_schedule_add_link(sf_rb,
-        LINK_OPTION_TX | LINK_OPTION_SHARED
-        /* If the source's timeslot and ours are the same, we must not only Tx but also Rx */
-        | ((new_index % ORCHESTRA_RBUNICAST_PERIOD == node_index % ORCHESTRA_RBUNICAST_PERIOD) ? LINK_OPTION_RX : 0),
-        LINK_TYPE_NORMAL, &new->addr,
-        new_index % ORCHESTRA_RBUNICAST_PERIOD, 2);
-  }
-#endif /* ORCHESTRA_WITH_RBUNICAST */
 }
+
+
+int schedule[] = {
+	3, 2, 1,
+	2, 1, 3
+};
+
 
 void
 orchestra_init()
@@ -369,16 +348,45 @@ orchestra_init()
 
   /* Rx links (with lease time) will be added upon receiving unicast */
   /* Tx links (with lease time) will be added upon transmitting unicast (if ack received) */
-  rime_sniffer_add(&orhcestra_sniffer);
+  int i = 0;
+  //LOG("orchestra: %d\n", sizeof(schedule)/sizeof(schedule[0]));
+  for(i = 0; i < sizeof(schedule)/sizeof(schedule[0]); i = i + 3){
+  	//LOG("node %d %d %d\n", schedule[i], schedule[i+1], schedule[i+2]);
+  	if(schedule[i] == node_index){
+  		//LOG("1    node %d timeslot %d\n", node_index, schedule[i+2]);
+  		/*
+  		tsch_schedule_add_link(sf_sb,
+      		LINK_OPTION_TX ,
+      		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
+      		schedule[i+2], 2);
+		*/
+  		tsch_schedule_add_link(sf_sb,
+      		LINK_OPTION_RX | LINK_OPTION_TX | LINK_OPTION_SHARED,
+      		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
+      		schedule[i+2], 2);
+  	}
+  	else if(schedule[i+1] == node_index){
+  		//LOG("2   node %d timeslot %d\n", node_index, schedule[i+2]);
+  		tsch_schedule_add_link(sf_sb,
+      		LINK_OPTION_RX ,
+      		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
+      		schedule[i+2], 2);  	
+  	}
+  }
+
+
+  //rime_sniffer_add(&orhcestra_sniffer);
 #endif
 
 #if ORCHESTRA_WITH_COMMON_SHARED
   /* Default slotframe: for broadcast or unicast to neighbors we
    * do not have a link to */
+  /*
   sf_common = tsch_schedule_add_slotframe(1, ORCHESTRA_COMMON_SHARED_PERIOD);
   tsch_schedule_add_link(sf_common,
       LINK_OPTION_RX | LINK_OPTION_TX | LINK_OPTION_SHARED,
       ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
       0, 1);
+   */
 #endif
 }
