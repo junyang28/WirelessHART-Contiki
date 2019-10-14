@@ -152,7 +152,7 @@ orchestra_delete_old_links()
 {
   //orchestra_delete_old_links_sf(sf_sb);
 #ifdef ORCHESTRA_SBUNICAST_PERIOD2
-  orchestra_delete_old_links_sf(sf_sb2);
+  //orchestra_delete_old_links_sf(sf_sb2);
 #endif
 }
 /*---------------------------------------------------------------------------*/
@@ -323,10 +323,10 @@ orchestra_callback_new_time_source(struct tsch_neighbor *old, struct tsch_neighb
 
 
 int schedule[] = {
-	3, 2, 1,
-	3, 2, 2,
-	2, 1, 3,
-	2, 1, 4
+	3, 2, 5,
+	3, 2, 10,
+	2, 1, 15,
+	2, 1, 20
 };
 
 
@@ -351,25 +351,26 @@ orchestra_init()
   /* Rx links (with lease time) will be added upon receiving unicast */
   /* Tx links (with lease time) will be added upon transmitting unicast (if ack received) */
   int i = 0;
-  //LOG("orchestra: %d\n", sizeof(schedule)/sizeof(schedule[0]));
+  //printf("orchestra: %d\n", sizeof(schedule)/sizeof(schedule[0]));
+  //printf("%d %d\n", node_index, node_id);
   for(i = 0; i < sizeof(schedule)/sizeof(schedule[0]); i = i + 3){
-  	//LOG("node %d %d %d\n", schedule[i], schedule[i+1], schedule[i+2]);
-  	if(schedule[i] == node_index){
-  		//LOG("1    node %d timeslot %d\n", node_index, schedule[i+2]);
+  	//printf("node %d %d %d\n", schedule[i], schedule[i+1], schedule[i+2]);
+  	if(schedule[i] == node_id){
+  		//printf("1    node %d timeslot %d\n", node_index, schedule[i+2]);
   		/*
   		tsch_schedule_add_link(sf_sb,
       		LINK_OPTION_TX ,
       		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
       		schedule[i+2], 2);
 		*/
-  		tsch_schedule_add_link(sf_sb,
+  		tsch_schedule_add_link(sf_eb,
       		LINK_OPTION_RX | LINK_OPTION_TX | LINK_OPTION_SHARED,
       		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
       		schedule[i+2], 2);
   	}
-  	else if(schedule[i+1] == node_index){
-  		//LOG("2   node %d timeslot %d\n", node_index, schedule[i+2]);
-  		tsch_schedule_add_link(sf_sb,
+  	else if(schedule[i+1] == node_id){
+  		//printf("2   node %d timeslot %d\n", node_index, schedule[i+2]);
+  		tsch_schedule_add_link(sf_eb,
       		LINK_OPTION_RX ,
       		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
       		schedule[i+2], 2);  	
