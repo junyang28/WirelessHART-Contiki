@@ -1319,10 +1319,12 @@ packet_sent(void *ptr, int status, int transmissions)
 
   const linkaddr_t *dest = packetbuf_addr(PACKETBUF_ADDR_RECEIVER);
 
+/*
   LOGP("6LoWPAN: %s sent to %d, st %d %d (%u bytes)",
     linkaddr_cmp(dest, &linkaddr_null) ? "bc" : "uc",
     LOG_NODEID_FROM_LINKADDR(dest), status, transmissions,
     packetbuf_datalen());
+    */
 }
 /*--------------------------------------------------------------------*/
 /**
@@ -1629,12 +1631,13 @@ input(void)
   packetbuf_ptr = packetbuf_dataptr();
 
   LOG_INC_HOPCOUNT_FROM_PACKETBUF();
-
+/*
   LOGP("6LoWPAN: %s input from %d (%u bytes)",
       linkaddr_cmp(packetbuf_addr(PACKETBUF_ADDR_RECEIVER), &linkaddr_null) ? "bc" : "uc",
           LOG_NODEID_FROM_LINKADDR(packetbuf_addr(PACKETBUF_ADDR_SENDER)),
           packetbuf_datalen()
   );
+  */
 
   /* Save the RSSI of the incoming packet in case the upper layer will
      want to query us for it later. */

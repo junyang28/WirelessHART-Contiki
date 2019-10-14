@@ -324,7 +324,9 @@ orchestra_callback_new_time_source(struct tsch_neighbor *old, struct tsch_neighb
 
 int schedule[] = {
 	3, 2, 1,
-	2, 1, 3
+	3, 2, 2,
+	2, 1, 3,
+	2, 1, 4
 };
 
 

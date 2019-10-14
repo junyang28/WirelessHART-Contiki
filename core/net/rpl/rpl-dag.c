@@ -349,7 +349,7 @@ rpl_set_root(uint8_t instance_id, uip_ipaddr_t *dag_id)
 
   ANNOTATE("#A root=%u\n", dag->dag_id.u8[sizeof(dag->dag_id) - 1]);
 
-  rpl_reset_dio_timer(instance, 1);
+  //rpl_reset_dio_timer(instance, 1);
 
   return dag;
 }

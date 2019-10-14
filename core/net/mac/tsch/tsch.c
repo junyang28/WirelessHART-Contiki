@@ -169,6 +169,9 @@ const linkaddr_t tsch_eb_address = { { 0, 0, 0, 0, 0, 0, 0, 0 } };
  * TODO: have a function to set this */
 int tsch_is_coordinator = 0;
 
+uint16_t record_slot = 0;
+
+
 /* The current radio channel */
 static uint8_t current_channel = -1;
 /* The current Absolute Slot Number (ASN) */
@@ -473,13 +476,15 @@ send_packet(mac_callback_t sent, void *ptr)
   } else {
     /* Enqueue packet */
     if(!tsch_queue_add_packet(addr, sent, ptr)) {
-      LOGP("TSCH:! can't send packet !tsch_queue_add_packet");
-      ret = MAC_TX_ERR;
+      //LOGP("TSCH:! can't send packet !tsch_queue_add_packet");
+      //ret = MAC_TX_ERR;
     } else {
+      /*
       LOGP("TSCH: send packet to %u with seqno %u, queue %u %u",
             LOG_NODEID_FROM_LINKADDR(addr), tsch_packet_seqno,
             packet_count_before,
             tsch_queue_packet_count(addr));
+            */
     }
   }
   if(ret != MAC_TX_DEFERRED) {
@@ -543,9 +548,11 @@ packet_input(void)
 //          LOG_NODEID_FROM_LINKADDR(packetbuf_addr(PACKETBUF_ADDR_SENDER)));
     } else {
       if(!duplicate) {
+        /*
         LOGP("TSCH: received from %u with seqno %u",
                        LOG_NODEID_FROM_LINKADDR(packetbuf_addr(PACKETBUF_ADDR_SENDER)),
                        packetbuf_attr(PACKETBUF_ATTR_PACKET_ID));
+                       */
         NETSTACK_NETWORK.input();
       }
     }
@@ -905,8 +912,9 @@ PT_THREAD(tsch_rx_link(struct pt *pt, struct rtimer *t))
   static int16_t input_index;
   static int input_queue_drop = 0;
 
+  
   PT_BEGIN(pt);
-
+  record_slot = current_link->timeslot;
   //TODO receive the packet and send NACK if we don't have buffer space!
   input_index = ringbufindex_peek_put(&input_ringbuf);
   if(input_index == -1) {
@@ -1497,8 +1505,10 @@ tsch_rx_process_pending()
           /* Update join priority */
           if(eb_join_priority < TSCH_MAX_JOIN_PRIORITY) {
             if(tsch_join_priority != eb_join_priority + 1) {
+              /*
               LOG("TSCH: update JP from EB %u -> %u\n",
                   tsch_join_priority, eb_join_priority + 1);
+                  */
               tsch_join_priority = eb_join_priority + 1;
             }
           } else {

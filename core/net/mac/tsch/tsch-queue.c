@@ -164,9 +164,11 @@ tsch_queue_update_time_source(const linkaddr_t *new_addr)
       struct tsch_neighbor *new_time_src = new_addr ? tsch_queue_add_nbr(new_addr) : NULL;
 
       if(new_time_src != old_time_src) {
+        /*
         LOG("TSCH: update time source: %u -> %u\n",
             LOG_NODEID_FROM_LINKADDR(old_time_src ? &old_time_src->addr : NULL),
             LOG_NODEID_FROM_LINKADDR(new_time_src ? &new_time_src->addr : NULL));
+            */
 
         /* Update time source */
         if(new_time_src != NULL) {

@@ -48,10 +48,12 @@
 #include "tools/orchestra.h"
 #include <stdio.h>
 
-#define SEND_INTERVAL   (1*CLOCK_SECOND)
+#define SEND_INTERVAL   (CLOCK_SECOND)
 #define UDP_PORT 1234
 
 static struct simple_udp_connection unicast_connection;
+extern struct asn_t current_asn;
+extern uint16_t record_slot;
 
 /*---------------------------------------------------------------------------*/
 PROCESS(unicast_sender_process, "Collect-only Application");
@@ -66,7 +68,13 @@ receiver(struct simple_udp_connection *c,
          const uint8_t *data,
          uint16_t datalen)
 {
-  LOGA((void*)data, "App: received");
+  //LOGA((void*)data, "App: received");
+  //printf("TSCH-dump %lx %u %u %u %u %u\n",current_asn.ls4b,
+  if(data) {
+    struct app_data data2;
+    appdata_copy(&data2, data);
+    printf("%d %d %u\n", UIP_HTONS(data2.src), node_id, record_slot);
+  }
 }
 /*---------------------------------------------------------------------------*/
 int
@@ -93,15 +101,17 @@ app_send_to(uint16_t id, uint32_t seqno, unsigned int to_send_cnt)
 
   //if(can_send_to(&dest_ipaddr)) {
   if(1){
-    LOGA(&data, "App: sending");
+    //LOGA(&data, "App: sending");
+    //LOG("App: sending\n");
     //simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
     //simple_udp_send(&unicast_connection, &data, sizeof(data));
     uip_create_linklocal_allnodes_mcast(&dest_ipaddr);
-    simple_udp_sendto(&unicast_connection, "Test", 4, &dest_ipaddr);
+    //simple_udp_sendto(&unicast_connection, "Test", 4, &dest_ipaddr);
+    simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
     return 1;
   } else {
     data.seqno = UIP_HTONL(seqno + to_send_cnt - 1);
-    LOGA(&data, "App: could not send");
+    //LOGA(&data, "App: could not send");
     return 0;
   }
 }

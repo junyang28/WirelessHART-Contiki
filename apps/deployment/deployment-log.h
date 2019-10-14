@@ -72,7 +72,8 @@ void log_start();
 void rpl_print_neighbor_list();
 
 #if WITH_DEPLOYMENT
-#define LOG(...) printf(__VA_ARGS__)
+//#define LOG(...) printf(__VA_ARGS__)
+#define LOG(...) 
 #define LOGA(appdataptr, ...) { printf(__VA_ARGS__); log_appdataptr(appdataptr); }
 #define LOGU(...) LOGA(appdataptr_from_uip(), __VA_ARGS__)
 #define LOGP(...) LOGA(appdataptr_from_packetbuf(), __VA_ARGS__)
