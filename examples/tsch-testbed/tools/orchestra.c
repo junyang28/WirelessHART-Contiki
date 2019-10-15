@@ -323,12 +323,34 @@ orchestra_callback_new_time_source(struct tsch_neighbor *old, struct tsch_neighb
 
 
 int schedule[] = {
-	2, 1, 5,
-	2, 1, 6,
-	1, 3, 7,
-	1, 3, 8,
-  3, 4, 9,
-  3, 4, 10
+  1,  2,  16,
+  1,  2,  17,
+  2,  3,  18,
+  1,  4,  18,
+  2,  3,  19,
+  3,  5,  20,
+  2,  6,  20,
+  3,  5,  21,
+  6,  7,  21,
+  5,  8,  22,
+  4,  3,  22,
+  5,  8,  23,
+  3,  9,  23,
+  3,  5,  24,
+  7,  8,  24,
+  5,  8,  25,
+  9,  8,  26,
+  5,  9,  27,
+  9,  8,  28,
+  8,  10, 29,
+  8,  10, 30,
+  10, 11, 31,
+  8,  12, 31,
+  10, 11, 32,
+  12, 13, 32,
+  13, 11, 33,
+  10, 14, 33,
+  14, 11, 34
 };
 
 
@@ -352,12 +374,23 @@ orchestra_init()
 
   /* Rx links (with lease time) will be added upon receiving unicast */
   /* Tx links (with lease time) will be added upon transmitting unicast (if ack received) */
-  int i = 0;
+  uint8_t i = 0;
+  uint8_t curslot = 0;
+  uint8_t offset = 0;
   //printf("orchestra: %d\n", sizeof(schedule)/sizeof(schedule[0]));
   //printf("%d %d\n", node_index, node_id);
   for(i = 0; i < sizeof(schedule)/sizeof(schedule[0]); i = i + 3){
   	//printf("node %d %d %d\n", schedule[i], schedule[i+1], schedule[i+2]);
-  	if(schedule[i] == node_id){
+  	
+    if(schedule[i+2] != curslot){
+      curslot = schedule[i+2];
+      offset = 0;
+    }
+    else {
+      offset++;
+    }
+
+    if(schedule[i] == node_id){
   		//printf("1    node %d timeslot %d\n", node_index, schedule[i+2]);
   		/*
   		tsch_schedule_add_link(sf_sb,
@@ -365,17 +398,18 @@ orchestra_init()
       		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
       		schedule[i+2], 2);
 		*/
+
   		tsch_schedule_add_link(sf_eb,
       		LINK_OPTION_RX | LINK_OPTION_TX | LINK_OPTION_SHARED,
       		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
-      		schedule[i+2], 2);
+      		schedule[i+2], offset);
   	}
   	else if(schedule[i+1] == node_id){
   		//printf("2   node %d timeslot %d\n", node_index, schedule[i+2]);
   		tsch_schedule_add_link(sf_eb,
       		LINK_OPTION_RX ,
       		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
-      		schedule[i+2], 2);  	
+      		schedule[i+2], offset);  	
   	}
   }
 

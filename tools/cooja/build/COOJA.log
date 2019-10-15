@@ -33,3 +33,274 @@
 [22:32:27 - Thread-5] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571106747431	Duration: 15577 ms	Simulated time 611451 ms	Ratio 39.25345060024395
 [22:32:29 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
 [22:32:29 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[22:55:30 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[22:55:30 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[22:55:31 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[22:55:31 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[22:55:31 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[22:55:31 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[22:55:32 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[22:55:33 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[09:38:40 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[09:38:45 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:12:44 - Thread-6] [Simulation.java:422] [INFO] - Simulation random seed: 123456
+[10:12:44 - Thread-6] [CompileContiki.java:140] [INFO] - > make app-rpl-collect-only.sky TARGET=sky 
+[10:12:44 - Thread-6] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:12:44 - Thread-6] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:12:44 - Thread-6] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:12:44 - Thread-6] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:12:44 - Thread-6] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:12:48 - Thread-7] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571148768195
+[10:12:51 - Thread-7] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571148771429	Duration: 3234 ms	Simulated time 122305 ms	Ratio 37.81849103277675
+[10:12:52 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:12:52 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:12:56 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:12:56 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:12:57 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:12:58 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:12:58 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:12:59 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:12:59 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:13:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:13:04 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:13:04 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:13:04 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:13:05 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:13:05 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10000.0 microseconds/pixel 
+[10:13:05 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20000.0 microseconds/pixel 
+[10:13:05 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50000.0 microseconds/pixel 
+[10:13:05 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100000.0 microseconds/pixel  (MAX)
+[10:13:06 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50000.0 microseconds/pixel 
+[10:13:06 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20000.0 microseconds/pixel 
+[10:13:06 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10000.0 microseconds/pixel 
+[10:13:06 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:13:06 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:13:07 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:13:08 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:13:08 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:13:08 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:13:08 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:18:51 - Thread-8] [Simulation.java:422] [INFO] - Simulation random seed: 123456
+[10:18:51 - Thread-8] [CompileContiki.java:140] [INFO] - > make app-rpl-collect-only.sky TARGET=sky 
+[10:18:51 - Thread-8] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:18:51 - Thread-8] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:18:51 - Thread-8] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:18:51 - Thread-8] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:18:51 - Thread-8] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:18:54 - Thread-9] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571149134367
+[10:18:55 - Thread-9] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571149135574	Duration: 1207 ms	Simulated time 12369 ms	Ratio 10.247721623860812
+[10:19:08 - Thread-10] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571149148319
+[10:19:15 - Thread-10] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571149155047	Duration: 6728 ms	Simulated time 87805 ms	Ratio 13.050683709869203
+[10:19:15 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:19:15 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:19:15 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:19:16 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:19:16 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10000.0 microseconds/pixel 
+[10:19:16 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20000.0 microseconds/pixel 
+[10:19:16 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50000.0 microseconds/pixel 
+[10:19:17 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20000.0 microseconds/pixel 
+[10:19:17 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10000.0 microseconds/pixel 
+[10:19:17 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:19:17 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:19:18 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:19:18 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:19:19 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:20:26 - Thread-11] [Simulation.java:422] [INFO] - Simulation random seed: 123456
+[10:20:26 - Thread-11] [CompileContiki.java:140] [INFO] - > make app-rpl-collect-only.sky TARGET=sky 
+[10:20:26 - Thread-11] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:20:26 - Thread-11] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:20:26 - Thread-11] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:20:26 - Thread-11] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:20:26 - Thread-11] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:20:31 - Thread-12] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571149231315
+[10:20:32 - Thread-12] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571149232298	Duration: 983 ms	Simulated time 982 ms	Ratio 0.9989827060020345
+[10:20:32 - Thread-13] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571149232907
+[10:20:35 - Thread-13] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571149235270	Duration: 2364 ms	Simulated time 3346 ms	Ratio 1.4153976311336718
+[10:20:37 - Thread-14] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571149237291
+[10:20:38 - Thread-14] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571149238631	Duration: 1340 ms	Simulated time 16695 ms	Ratio 12.458955223880597
+[10:20:40 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:20:41 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:20:47 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:20:47 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:21:13 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:21:13 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:21:13 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:21:13 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:21:13 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10000.0 microseconds/pixel 
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:25 - AWT-EventQueue-0] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:21:43 - Thread-15] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571149303055
+[10:21:47 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20000.0 microseconds/pixel 
+[10:21:47 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50000.0 microseconds/pixel 
+[10:21:47 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100000.0 microseconds/pixel  (MAX)
+[10:21:47 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100000.0 microseconds/pixel  (MAX)
+[10:21:53 - Thread-15] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571149313416	Duration: 10361 ms	Simulated time 101668 ms	Ratio 9.812566354598976
+[10:21:57 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50000.0 microseconds/pixel 
+[10:21:57 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20000.0 microseconds/pixel 
+[10:21:57 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10000.0 microseconds/pixel 
+[10:21:57 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:22:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:22:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:22:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:22:54 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:22:54 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:22:54 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:22:56 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:22:56 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:22:57 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:22:58 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:23:02 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:23:02 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:23:19 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:23:19 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:23:20 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:23:21 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:23:22 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:23:22 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:23:31 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:23:32 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:23:33 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:23:34 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:24:18 - Thread-16] [Simulation.java:422] [INFO] - Simulation random seed: 123456
+[10:24:18 - Thread-16] [CompileContiki.java:140] [INFO] - > make app-rpl-collect-only.sky TARGET=sky 
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:18 - Thread-16] [MspMote.java:235] [INFO] - Loading firmware from: /home/young/Videos/WirelessHART-Contiki/examples/tsch-testbed/app-rpl-collect-only.sky
+[10:24:19 - Thread-16] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:24:21 - Thread-17] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571149461673
+[10:24:23 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:24:24 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:24:24 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10000.0 microseconds/pixel 
+[10:24:26 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:24:26 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:24:29 - Thread-17] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571149469992	Duration: 8319 ms	Simulated time 63438 ms	Ratio 7.62567616300036
+[10:24:34 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:24:34 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:24:34 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:24:34 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:24:35 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:24:36 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:24:44 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:24:45 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:24:46 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:24:49 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:24:55 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:25:10 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:25:15 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:25:20 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:25:21 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:25:21 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:25:23 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:25:27 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:41:43 - Thread-18] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571150503127
+[10:41:44 - Thread-18] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571150504008	Duration: 881 ms	Simulated time 71524 ms	Ratio 81.18501702610669
+[10:46:13 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:46:13 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[10:46:13 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50.0 microseconds/pixel 
+[10:46:14 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[10:46:14 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:46:15 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:46:16 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:46:16 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[10:46:16 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:46:26 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:46:32 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:46:33 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:49:40 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:49:40 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:49:40 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:49:44 - Thread-19] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571150984020
+[10:49:48 - Thread-19] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571150988760	Duration: 4740 ms	Simulated time 114189 ms	Ratio 24.090506329113925
+[10:49:58 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:49:58 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:49:58 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:49:59 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:49:59 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:50:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:50:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:50:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5000.0 microseconds/pixel 
+[10:50:01 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:50:01 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:50:01 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:50:02 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:50:02 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:50:02 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:50:02 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:50:02 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:50:03 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:50:03 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:50:05 - Thread-20] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571151005272
+[10:50:21 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2000.0 microseconds/pixel 
+[10:50:29 - Thread-20] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571151029442	Duration: 24170 ms	Simulated time 318616 ms	Ratio 13.182292097641705
+[10:50:32 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:50:33 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:50:34 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:50:34 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[10:50:35 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:50:35 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:50:47 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:50:48 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:50:54 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:50:54 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[10:50:55 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50.0 microseconds/pixel 
+[10:50:55 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20.0 microseconds/pixel 
+[10:50:57 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10.0 microseconds/pixel 
+[10:50:59 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20.0 microseconds/pixel 
+[10:50:59 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50.0 microseconds/pixel 
+[10:50:59 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[10:51:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50.0 microseconds/pixel 
+[10:51:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20.0 microseconds/pixel 
+[10:51:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10.0 microseconds/pixel 
+[10:51:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5.0 microseconds/pixel 
+[10:51:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2.0 microseconds/pixel 
+[10:51:00 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1.0 microseconds/pixel  (MIN)
+[10:51:01 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1.0 microseconds/pixel  (MIN)
+[10:51:01 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 2.0 microseconds/pixel 
+[10:51:01 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 5.0 microseconds/pixel 
+[10:51:01 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 10.0 microseconds/pixel 
+[10:51:02 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 20.0 microseconds/pixel 
+[10:51:02 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50.0 microseconds/pixel 
+[10:51:03 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[10:51:04 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:51:04 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:51:04 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:51:05 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:51:05 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:51:05 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[10:51:05 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 50.0 microseconds/pixel 
+[10:51:07 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 100.0 microseconds/pixel 
+[10:51:07 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:51:07 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:51:07 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:51:09 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:51:09 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:51:09 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:51:09 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 1000.0 microseconds/pixel 
+[10:51:10 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:51:10 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:51:11 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
+[10:51:21 - Thread-21] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571151081656
+[10:51:22 - Thread-21] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571151082369	Duration: 713 ms	Simulated time 324590 ms	Ratio 455.24544179523144
+[10:51:26 - Thread-22] [Simulation.java:253] [INFO] - Simulation main loop started, system time: 1571151086151
+[10:51:28 - Thread-22] [Simulation.java:312] [INFO] - Simulation main loop stopped, system time: 1571151088030	Duration: 1879 ms	Simulated time 340399 ms	Ratio 181.1596593932943
+[10:53:27 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 200.0 microseconds/pixel 
+[10:53:49 - AWT-EventQueue-0] [TimeLine.java:567] [INFO] - Zoom level: 500.0 microseconds/pixel 
