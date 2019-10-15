@@ -108,6 +108,8 @@ app_send_to(uint16_t id, uint32_t seqno, unsigned int to_send_cnt)
     uip_create_linklocal_allnodes_mcast(&dest_ipaddr);
     //simple_udp_sendto(&unicast_connection, "Test", 4, &dest_ipaddr);
     simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
+    simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
+    simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
     return 1;
   } else {
     data.seqno = UIP_HTONL(seqno + to_send_cnt - 1);
@@ -143,7 +145,7 @@ PROCESS_THREAD(unicast_sender_process, ev, data)
 #endif
 #endif
 
-  if(node_id != ROOT_ID) {
+  //if(node_id != ROOT_ID) {
     etimer_set(&periodic_timer, SEND_INTERVAL);
     while(1) {
       etimer_set(&send_timer, random_rand() % (SEND_INTERVAL));
@@ -170,7 +172,7 @@ PROCESS_THREAD(unicast_sender_process, ev, data)
       PROCESS_WAIT_UNTIL(etimer_expired(&periodic_timer));
       etimer_reset(&periodic_timer);
     }
-  }
+  //}
 
   PROCESS_END();
 }
