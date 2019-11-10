@@ -108,6 +108,8 @@ app_send_to(uint16_t id, uint32_t seqno, unsigned int to_send_cnt)
     uip_create_linklocal_allnodes_mcast(&dest_ipaddr);
     //simple_udp_sendto(&unicast_connection, "Test", 4, &dest_ipaddr);
     simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
+    simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
+    simple_udp_sendto(&unicast_connection, &data, sizeof(data), &dest_ipaddr);
     return 1;
   } else {
     data.seqno = UIP_HTONL(seqno + to_send_cnt - 1);
