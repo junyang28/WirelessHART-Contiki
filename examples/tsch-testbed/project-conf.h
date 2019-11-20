@@ -186,7 +186,7 @@
 
 /* No channel hopping for the moment */
 #undef TSCH_CONF_N_CHANNELS
-#define TSCH_CONF_N_CHANNELS 4
+#define TSCH_CONF_N_CHANNELS 5
 
 #if WITH_OF_PDR
 

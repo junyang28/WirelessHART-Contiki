@@ -47,7 +47,7 @@ obj_sky/orchestra.o: tools/orchestra.c ../../core/./contiki.h \
  ../../core/./net/rime/polite.h ../../core/./net/rime/rimestats.h \
  ../../core/./net/rime/rmh.h ../../core/./net/rime/route.h \
  ../../core/./net/rime/rucb.h ../../core/./net/rime/timesynch.h \
- ../../core/./net/rime/trickle.h tools/orchestra.h \
+ ../../core/./net/rime/trickle.h tools/orchestra.h tools/schedule.h \
  ../../core/./net/ip/uip-debug.h
 tools/orchestra.c ../../core/./contiki.h :
  ../../core/./contiki-version.h ../../platform/sky/./contiki-conf.h :
@@ -98,5 +98,5 @@ tools/orchestra.c ../../core/./contiki.h :
  ../../core/./net/rime/polite.h ../../core/./net/rime/rimestats.h :
  ../../core/./net/rime/rmh.h ../../core/./net/rime/route.h :
  ../../core/./net/rime/rucb.h ../../core/./net/rime/timesynch.h :
- ../../core/./net/rime/trickle.h tools/orchestra.h :
+ ../../core/./net/rime/trickle.h tools/orchestra.h tools/schedule.h :
  ../../core/./net/ip/uip-debug.h :

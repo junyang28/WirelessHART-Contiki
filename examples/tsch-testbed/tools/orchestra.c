@@ -46,6 +46,7 @@
 #include "net/rime/rime.h"
 #include "tools/orchestra.h"
 #include <stdio.h>
+#include "schedule.h"
 
 #define DEBUG DEBUG_NONE
 #include "net/ip/uip-debug.h"
@@ -321,13 +322,9 @@ orchestra_callback_new_time_source(struct tsch_neighbor *old, struct tsch_neighb
 
 }
 
+#define NODE_NUMBER 50
 
-int schedule[] = {
-	3, 2, 5,
-	3, 2, 10,
-	2, 1, 15,
-	2, 1, 20
-};
+
 
 
 void
@@ -350,10 +347,21 @@ orchestra_init()
 
   /* Rx links (with lease time) will be added upon receiving unicast */
   /* Tx links (with lease time) will be added upon transmitting unicast (if ack received) */
-  int i = 0;
+  uint8_t i = 0;
+  uint8_t curslot = 0;
+  uint8_t offset = 0;
   //printf("orchestra: %d\n", sizeof(schedule)/sizeof(schedule[0]));
   //printf("%d %d\n", node_index, node_id);
   for(i = 0; i < sizeof(schedule)/sizeof(schedule[0]); i = i + 3){
+
+    if(schedule[i+2] != curslot){
+      curslot = schedule[i+2];
+      offset = 0;
+    }
+    else {
+      offset++;
+    }
+
   	//printf("node %d %d %d\n", schedule[i], schedule[i+1], schedule[i+2]);
   	if(schedule[i] == node_id){
   		//printf("1    node %d timeslot %d\n", node_index, schedule[i+2]);
@@ -366,14 +374,14 @@ orchestra_init()
   		tsch_schedule_add_link(sf_eb,
       		LINK_OPTION_RX | LINK_OPTION_TX | LINK_OPTION_SHARED,
       		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
-      		schedule[i+2], 2);
+      		schedule[i+2] + NODE_NUMBER, offset);
   	}
   	else if(schedule[i+1] == node_id){
   		//printf("2   node %d timeslot %d\n", node_index, schedule[i+2]);
   		tsch_schedule_add_link(sf_eb,
       		LINK_OPTION_RX ,
       		ORCHESTRA_COMMON_SHARED_TYPE, &tsch_broadcast_address,
-      		schedule[i+2], 2);  	
+      		schedule[i+2] + NODE_NUMBER, offset);  	
   	}
   }
 

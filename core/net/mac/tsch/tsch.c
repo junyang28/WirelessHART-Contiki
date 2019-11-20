@@ -156,7 +156,7 @@ static struct seqno received_seqnos[MAX_SEQNOS];
 
 // TODO use the standard hopping sequence
 /* Channel hopping: a list of channels (ordered by measured goodness from a specific testbed experiment in Indriya) */
-uint8_t hopping_sequence_list[] = { 26, 15, 25, 20, 16, 19, 14, 24, 18, 17, 17, 11, 21, 23, 12, 22, 13 };
+uint8_t hopping_sequence_list[] = { 26, 21, 25, 20, 22, 19, 14, 24, 18, 17, 17, 11, 21, 23, 12, 22, 13 };
 //uint8_t hopping_sequence_list[] = { 23, 12, 22, 13 };
 struct asn_divisor_t hopping_sequence_length;
 

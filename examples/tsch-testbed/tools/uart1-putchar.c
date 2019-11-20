@@ -58,7 +58,8 @@
 #include "dev/serial-line.h"
 #include "lib/ringbuf.h"
 
-#if IN_INDRIYA || IN_TWIST
+#if 1
+//#if IN_INDRIYA || IN_TWIST
 /* TODO handle multiple message types */
 
 #ifndef AM_WILAB_CONTIKI_PRINTF

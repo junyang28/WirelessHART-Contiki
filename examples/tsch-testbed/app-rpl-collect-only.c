@@ -145,7 +145,7 @@ PROCESS_THREAD(unicast_sender_process, ev, data)
 #endif
 #endif
 
-  if(node_id != ROOT_ID) {
+  //if(node_id != ROOT_ID) {
     etimer_set(&periodic_timer, SEND_INTERVAL);
     while(1) {
       etimer_set(&send_timer, random_rand() % (SEND_INTERVAL));
@@ -172,7 +172,7 @@ PROCESS_THREAD(unicast_sender_process, ev, data)
       PROCESS_WAIT_UNTIL(etimer_expired(&periodic_timer));
       etimer_reset(&periodic_timer);
     }
-  }
+  //}
 
   PROCESS_END();
 }
